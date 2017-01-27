@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+       xmlns:f="http://xmlns.jcp.org/jsf/core">
+  <head>
+ 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <title>Bitirme Projesi | </title> <!-- Sekmede görünen isim  -->
+
+    <!-- Bootstrap -->
+    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <!-- Font Awesome -->
+    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+    <!-- NProgress -->
+    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet"/><!-- bunun ne olduğunu sor-->
+    <!-- iCheck -->
+    <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet"/>
+    <!-- bootstrap-progressbar -->
+    <link href="../vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet"/><!-- bunun ne olduğunu sor-->
+    <!-- JQVMap -->
+    <link href="../vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
+
+    <!-- Custom Theme Style -->
+    <link href="../build/css/custom.min.css" rel="stylesheet"/>
+    
+     <link href="src/scss/custom.scss" rel="stylesheet"/>
+     
+       <link href="../src/scss/todo.css" rel="stylesheet"/>	
+       
+       <style>
+       /* Include the padding and border in an element's total width and height */
+* {
+    box-sizing: border-box;
+}
+
+/* Remove margins and padding from the list */
+#myUL ul {
+    margin: 0;
+    padding: 0;
+}
+
+/* Style the list items */
+#myUL ul li {
+    cursor: pointer;
+    position: relative;
+    padding: 12px 8px 12px 40px;
+    background: #eee;
+    font-size: 30px;
+    transition: 0.2s;
+	font-family: "Times New Roman";
+    /* make the list items unselectable */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#myUL li {
+font-size: 15px;
+}
+
+
+/* Set all odd list items to a different color (zebra-stripes) */
+#myUL ul li:nth-child(odd) {
+    background: #f9f9f9;
+}
+
+/* Darker background-color on hover */
+ul li:hover {
+    background: #ddd;
+}
+
+/* When clicked on, add a background color and strike out text */
+ul li.checked {
+    background: #888;
+    color: #fff;
+    text-decoration: line-through;
+}
+
+/* Add a "checked" mark when clicked on */
+ul li.checked::before {
+    content: '';
+    position: absolute;
+    border-color: #fff;
+    border-style: solid;
+    border-width: 0 2px 2px 0;
+    top: 10px;
+    left: 16px;
+    transform: rotate(45deg);
+    height: 15px;
+    width: 7px;
+}
+
+/* Style the close button */
+.close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 12px 16px 12px 16px
+}
+
+.close:hover {
+    background-color: #f44336;
+    color: white;
+}
+
+/* Style the header */
+.header {
+	background-size:500px;
+    padding: 30px 40px;
+    color: yellow;
+    text-align: center;
+}
+
+/* Clear floats after the header */
+.header:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#myInput{color:black;}
+
+/* Style the input */
+input {
+    border: none;
+    width: 75%;
+    padding: 10px;
+    float: left;
+    font-size: 16px;
+}
+
+
+
+
+
+       </style>
+      
+  </head>
+
+  <body class="nav-md todo">
+    <div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col"><!-- Sol menüyü sığdırır.-->
+          <div class="left_col scroll-view"><!-- bunun ne olduğunu sor-->
+            <div class="navbar nav_title" style="border: 0;"><!-- bunun ne olduğunu sor-->
+              <a href="ogrt_ana_sayfa.xhtml" class="site_title"><span>Bitirme Projesi</span></a> <!-- sol üst köşe-->
+            </div>
+
+          <div class="clearfix"></div><!-- bunun ne olduğunu sor-->
+
+            <!-- menu profile quick info -->
+            <div class="profile" style="display:inline-block;width:100%;">
+              
+              <div class="profile_info" >
+                <span>Hoşgeldiniz,</span>
+                <h2>#{loginBean.ogrt1.isim} #{loginBean.ogrt1.soyisim}</h2>
+              </div>
+            </div>
+            <!-- /menu profile quick info -->
+
+            <br />
+
+            <!-- sidebar menu -->
+          <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">  <!-- id sidebar-menu nerde,,, bu class nerde? -->
+              <div class="menu_section">
+                <h3>Menü</h3>
+                <ul class="nav side-menu">  <!-- aradaki boşluk ne anlama geliyor -->
+                  <li><a href="derssec.xhtml">  <i class="fa fa-home"></i> Devamsızlık Görüntüle </a>
+                  </li>
+                   <li><a href="yoklama_al.xhtml">  <i class="fa fa-edit"></i> Yoklama Al </a>
+                  </li>
+                   
+                 
+
+
+
+                </ul>
+              </div>
+
+
+            </div>
+            <!-- /sidebar menu -->
+
+           
+          </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+          <div class="nav_menu">
+            <nav>
+              
+
+              <ul class="nav navbar-nav navbar-right">
+							<!-- bu boşluklar.... ve o mesaj kutucuğu nerede?-->
+							<li class=""><a href="javascript:;"
+								class="user-profile dropdown-toggle" data-toggle="dropdown"
+								aria-expanded="false"> #{loginBean.ogrt1.isim} #{loginBean.ogrt1.soyisim} <span
+									class=" fa fa-angle-down"></span>
+							</a>
+								<ul class="dropdown-menu dropdown-usermenu pull-right">
+									
+									
+									<li><a href="javascript:;">Yardım</a></li>
+									<li><a href="login.xhtml"><i
+											class="fa fa-sign-out pull-right"></i> Çıkış Yap</a></li>
+								</ul></li>
+							<!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+						</ul>
+            </nav>
+          </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col " role="main" >
+        <div class="">
+        <div class="col-md-6 " >
+       <h:form>
+       
+       <h:graphicImage style="height:120px; width: 120px; " value="#{loginBean.ogrt1.image}" />
+       <br></br>
+          <br></br>
+           <br></br>
+        <h:outputText style=" font-size: 12pt; "  value="Öğretmenin İsmi: "/>
+        
+        <h:outputText style=" font-size: 12pt; " value="#{loginBean.ogrt1.isim}"/>
+     <br> </br>
+         <h:outputText style=" font-size: 12pt; " value="Öğretmenin Soyİsmi: "/>
+        <h:outputText style=" font-size: 12pt; " value="#{loginBean.ogrt1.soyisim}"/>
+         <br></br>
+          <br></br>
+           <br></br>
+           
+      
+        </h:form>
+        <br></br>
+        
+          <br></br>
+          
+          
+           <br></br>
+           
+       
+        
+        </div>
+        
+        
+        <div class="col-md-6" >
+       
+        
+  <h2 style="color:black; text-align: center; ">NOTLARIM</h2>
+  Buraya notlarınızı,yapacaklarınızı veya hatırlamak istediğiniz bilgilerinizi girebilirsiniz.
+ 
+ 
+ 
+ <h:form>
+ <h:inputText a:placeholder="Notu giriniz.." value="#{notBean.not2.not1}" style= "width:400px; margin-top:20px; " > </h:inputText>
+ <h:commandButton action="#{notBean.notEkle()}" style=" height:40px; width:70px; margin-left:20px; margin-top:20px;"  class="btn btn-primary"  value="Ekle" > </h:commandButton>
+</h:form>
+	
+	<h:form id="formid">
+<h:dataTable value="#{notBean.not_list}"
+var="var" border="0"
+styleClass="table table-striped table-hover ">
+<h:column>
+				#{var.not1}
+</h:column>
+
+
+											<h:column>
+												
+				<h:commandLink id="sil1" value="Sil"  action="#{notBean.notSil()}">
+													<f:param name="not_no" value="#{var.not_no}" />
+												
+												</h:commandLink>
+											</h:column>
+
+										</h:dataTable>
+									</h:form>
+
+<br> </br>
+	
+ 
+
+        </div>
+        </div>
+         
+      </div>
+    </div>
+
+	<!-- todolist -->
+	<script src="../build/js/todolist.js"></script>
+    <!-- jQuery -->
+    <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="../vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="../vendors/nprogress/nprogress.js"></script>
+    <!-- Chart.js -->
+    <script src="../vendors/Chart.js/dist/Chart.min.js"></script>
+    <!-- gauge.js -->
+    <script src="../vendors/gauge.js/dist/gauge.min.js"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- iCheck -->
+    <script src="../vendors/iCheck/icheck.min.js"></script>
+    <!-- Skycons -->
+    <script src="../vendors/skycons/skycons.js"></script>
+    <!-- Flot -->
+    <script src="../vendors/Flot/jquery.flot.js"></script>
+    <script src="../vendors/Flot/jquery.flot.pie.js"></script>
+    <script src="../vendors/Flot/jquery.flot.time.js"></script>
+    <script src="../vendors/Flot/jquery.flot.stack.js"></script>
+    <script src="../vendors/Flot/jquery.flot.resize.js"></script>
+    <!-- Flot plugins -->
+    <script src="../vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+    <script src="../vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+    <script src="../vendors/flot.curvedlines/curvedLines.js"></script>
+    <!-- DateJS -->
+    <script src="../vendors/DateJS/build/date.js"></script>
+    <!-- JQVMap -->
+    <script src="../vendors/jqvmap/dist/jquery.vmap.js"></script>
+    <script src="../vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+    <script src="../vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="js/moment/moment.min.js"></script>
+    <script src="js/datepicker/daterangepicker.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="../build/js/custom.min.js"></script>
+
+ 
+ <SCRIPT type="text/javascript">
+//Create a "close" button and append it to each list item
+ var myNodelist = document.getElementsByTagName("#myUL LI");
+ var i;
+ for (i = 0; i &lt; myNodelist.length; i++) {
+   var span = document.createElement("SPAN");
+   var txt = document.createTextNode("\u00D7");
+   span.className = "close";
+   span.appendChild(txt);
+   myNodelist[i].appendChild(span);
+ }
+
+ // Click on a close button to hide the current list item
+ var close = document.getElementsByClassName("close");
+ var i;
+ for (i = 0; i &lt; close.length; i++) {
+   close[i].onclick = function() {
+     var div = this.parentElement;
+     div.style.display = "none";
+   }
+ }
+
+ // Add a "checked" symbol when clicking on a list item
+ var list = document.querySelector('ul');
+ list.addEventListener('click', function(ev) {
+   if (ev.target.tagName === 'LI') {
+     ev.target.classList.toggle('checked');
+   }
+ }, false);
+
+ // Create a new list item when clicking on the "Add" button
+ function newElement() {
+   var li = document.createElement("li");
+   var inputValue = document.getElementById("myInput").value;
+   var t = document.createTextNode(inputValue);
+   li.appendChild(t);
+   if (inputValue === '') {
+     alert("Bir not giriniz.");
+   } else {
+     document.getElementById("myUL").appendChild(li);
+   }
+   document.getElementById("myInput").value = "";
+
+   var span = document.createElement("SPAN");
+   var txt = document.createTextNode("\u00D7");
+   span.className = "close";
+   span.appendChild(txt);
+   li.appendChild(span);
+
+   for (i = 0; i &lt; close.length; i++) {
+     close[i].onclick = function() {
+       var div = this.parentElement;
+       div.style.display = "none";
+     }
+   }
+ }
+ </SCRIPT>
+ 
+ 
+ 
+    </div>
+  </body>
+</html>
